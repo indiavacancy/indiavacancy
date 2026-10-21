@@ -1,10 +1,347 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyA-zaFjIhbPmUL-jSMFhYsGkMhUYFSqiAw",
-  authDomain: "indiavacancy-fb647.firebaseapp.com",
-  projectId: "indiavacancy-fb647",
-  storageBucket: "indiavacancy-fb647.firebasestorage.app",
-  messagingSenderId: "109427134565",
-  appId: "1:109427134565:web:180068370a25e7f5ff768c",
-  measurementId: "G-ZSJMECLB5C"
-};
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROJGAR UPDATE - Admin Panel</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Arial, sans-serif;
+      background: #f1f5f9; color: #172033;
+    }
+    header {
+      background: #123a72; color: white;
+      padding: 18px; display: flex;
+      align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    main { max-width: 900px; margin: 24px auto; padding: 16px; }
+    .card {
+      background: white; padding: 22px; margin-bottom: 20px;
+      border-radius: 12px; box-shadow: 0 3px 14px #0000000c;
+    }
+    h1 { font-size: 22px; margin: 0; }
+    h2 { font-size: 20px; margin-top: 0; }
+    label { display: block; font-weight: bold; margin: 14px 0 6px; }
+    input, select, textarea {
+      width: 100%; padding: 12px; border: 1px solid #cbd5e1;
+      border-radius: 7px; font-size: 16px; background: white;
+    }
+    textarea { min-height: 95px; resize: vertical; }
+    button {
+      border: 0; padding: 11px 16px; border-radius: 7px;
+      background: #1769d2; color: white; font-size: 15px;
+      cursor: pointer; margin-top: 14px;
+    }
+    button:disabled { opacity: .6; cursor: wait; }
+    .logout { background: #b42318; margin-top: 0; }
+    .delete { background: #b42318; margin-top: 8px; }
+    .secondary { background: #475569; }
+    .hidden { display: none !important; }
+    .status { margin: 12px 0; overflow-wrap: anywhere; }
+    .post { border: 1px solid #e2e8f0; padding: 14px; margin-top: 12px; border-radius: 8px; }
+    .post h3 { margin: 0 0 8px; }
+    .muted { color: #64748b; font-size: 14px; }
+    a { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ROJGAR UPDATE — Admin Panel</h1>
+    <button id="logoutBtn" class="logout hidden" type="button">Logout</button>
+  </header>
+
+  <main>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section id="loginSection" class="card">
+      <h2>Admin Login</h2>
+      <form id="loginForm">
+        <label for="email">Admin Email</label>
+        <input id="email" type="email" autocomplete="username"
+          required placeholder="अपना Admin Email डालें">
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+          autocomplete="current-password" required
+          placeholder="अपना Password डालें">
+
+        <button id="loginBtn" type="submit">Login करें</button>
+        <button id="resetBtn" class="secondary" type="button">
+          Password Reset Email भेजें
+        </button>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="card">
+        <h2>नई पोस्ट जोड़ें</h2>
+        <form id="postForm">
+          <label for="category">पोस्ट का प्रकार</label>
+          <select id="category" required>
+            <option value="job">Job Notification</option>
+            <option value="result">Result</option>
+            <option value="admit-card">Admit Card</option>
+          </select>
+
+          <label for="title">पोस्ट का Title</label>
+          <input id="title" required maxlength="180"
+            placeholder="जैसे: SSC MTS Recruitment 2026">
+
+          <label for="description">पूरी जानकारी</label>
+          <textarea id="description" required maxlength="10000"
+            placeholder="पोस्ट की जानकारी लिखें"></textarea>
+
+          <label for="url">आधिकारिक लिंक (वैकल्पिक)</label>
+          <input id="url" type="url" maxlength="1000"
+            placeholder="https://example.gov.in/">
+
+          <label for="lastDate">Last Date (वैकल्पिक)</label>
+          <input id="lastDate" type="date">
+
+          <button id="saveBtn" type="submit">पोस्ट सेव करें</button>
+        </form>
+        <p class="muted">
+          पोस्ट Firestore में सेव होगी। वेबसाइट पर दिखाने के लिए
+          आपकी public वेबसाइट को भी इसी collection से डेटा पढ़ना होगा।
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>मेरी पोस्ट</h2>
+        <button id="refreshBtn" class="secondary" type="button">
+          सूची Refresh करें
+        </button>
+        <div id="postsList">पोस्ट लोड हो रही हैं...</div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import {
+      getAuth, onAuthStateChanged, signInWithEmailAndPassword,
+      signOut, sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+    import {
+      getFirestore, collection, addDoc, getDocs, deleteDoc,
+      doc, query, orderBy, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-zaFjIhbPmUL-jSMFhYsGkMhUYFSqiAw",
+      authDomain: "indiavacancy-fb647.firebaseapp.com",
+      projectId: "indiavacancy-fb647",
+      storageBucket: "indiavacancy-fb647.firebasestorage.app",
+      messagingSenderId: "109427134565",
+      appId: "1:109427134565:web:180068370a25e7f5ff768c",
+      measurementId: "G-ZSJMECLB5C"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const $ = id => document.getElementById(id);
+    const status = $("status");
+    let currentUser = null;
+
+    function message(text, isError = false) {
+      status.textContent = text;
+      status.style.color = isError ? "#b42318" : "#187044";
+    }
+
+    function friendlyError(error) {
+      const messages = {
+        "auth/api-key-not-valid":
+          "API Key स्वीकार नहीं हुई। Firebase Console से Web App Config मिलाएँ और API restrictions जाँचें।",
+        "auth/invalid-credential":
+          "Email या Password गलत है।",
+        "auth/invalid-email":
+          "Email का प्रारूप सही नहीं है।",
+        "auth/user-disabled":
+          "यह अकाउंट बंद किया गया है।",
+        "auth/too-many-requests":
+          "बहुत बार कोशिश हुई है। कुछ समय बाद फिर कोशिश करें।",
+        "auth/network-request-failed":
+          "इंटरनेट कनेक्शन जाँचें।",
+        "permission-denied":
+          "Firestore अनुमति नहीं दे रहा। Admin UID और Security Rules जाँचें।",
+        "unavailable":
+          "Firebase सेवा उपलब्ध नहीं है। थोड़ी देर बाद कोशिश करें।"
+      };
+      return messages[error.code] ||
+        ("Error: " + (error.code || error.message || "अज्ञात समस्या"));
+    }
+
+    $("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      $("loginBtn").disabled = true;
+      message("Login हो रहा है...");
+      try {
+        await signInWithEmailAndPassword(
+          auth, $("email").value.trim(), $("password").value
+        );
+        $("password").value = "";
+      } catch (error) {
+        message(friendlyError(error), true);
+      } finally {
+        $("loginBtn").disabled = false;
+      }
+    });
+
+    $("resetBtn").addEventListener("click", async () => {
+      const email = $("email").value.trim();
+      if (!email) {
+        message("पहले Email डालें, फिर Password Reset दबाएँ।", true);
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        message("यदि Email अकाउंट से जुड़ा है, तो Password Reset ईमेल भेजा गया है। Inbox और Spam जाँचें।");
+      } catch (error) {
+        message(friendlyError(error), true);
+      }
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        message("Logout हो गया।");
+      } catch (error) {
+        message(friendlyError(error), true);
+      }
+    });
+
+    onAuthStateChanged(auth, user => {
+      currentUser = user;
+      $("loginSection").classList.toggle("hidden", !!user);
+      $("dashboard").classList.toggle("hidden", !user);
+      $("logoutBtn").classList.toggle("hidden", !user);
+      if (user) {
+        message("Login हुआ: " + user.email);
+        loadPosts();
+      }
+    });
+
+    $("postForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!currentUser) {
+        message("पहले Login करें।", true);
+        return;
+      }
+
+      const title = $("title").value.trim();
+      const description = $("description").value.trim();
+      const url = $("url").value.trim();
+
+      if (!title || !description) {
+        message("Title और पूरी जानकारी भरें।", true);
+        return;
+      }
+      if (url && !/^https?:\/\//i.test(url)) {
+        message("आधिकारिक लिंक https:// से शुरू होना चाहिए।", true);
+        return;
+      }
+
+      $("saveBtn").disabled = true;
+      try {
+        await addDoc(collection(db, "posts"), {
+          category: $("category").value,
+          title,
+          description,
+          url,
+          lastDate: $("lastDate").value,
+          createdAt: serverTimestamp(),
+          createdBy: currentUser.uid
+        });
+        $("postForm").reset();
+        message("पोस्ट सफलतापूर्वक सेव हो गई।");
+        await loadPosts();
+      } catch (error) {
+        message(friendlyError(error), true);
+      } finally {
+        $("saveBtn").disabled = false;
+      }
+    });
+
+    async function loadPosts() {
+      if (!currentUser) return;
+      const list = $("postsList");
+      list.replaceChildren();
+      list.textContent = "पोस्ट लोड हो रही हैं...";
+      try {
+        const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(q);
+        list.replaceChildren();
+
+        if (snapshot.empty) {
+          list.textContent = "अभी कोई पोस्ट नहीं है।";
+          return;
+        }
+
+        snapshot.forEach(item => {
+          const data = item.data();
+          const card = document.createElement("article");
+          card.className = "post";
+
+          const heading = document.createElement("h3");
+          heading.textContent = data.title || "बिना Title की पोस्ट";
+
+          const type = document.createElement("p");
+          type.className = "muted";
+          type.textContent = "प्रकार: " + (data.category || "");
+
+          const description = document.createElement("p");
+          description.textContent = data.description || "";
+
+          card.append(heading, type, description);
+
+          if (data.url) {
+            const link = document.createElement("a");
+            link.href = data.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "आधिकारिक लिंक खोलें";
+            card.append(link);
+          }
+
+          if (data.lastDate) {
+            const date = document.createElement("p");
+            date.textContent = "Last Date: " + data.lastDate;
+            card.append(date);
+          }
+
+          const del = document.createElement("button");
+          del.className = "delete";
+          del.type = "button";
+          del.textContent = "पोस्ट डिलीट करें";
+          del.addEventListener("click", async () => {
+            if (!confirm("क्या इस पोस्ट को स्थायी रूप से डिलीट करना है?")) return;
+            del.disabled = true;
+            try {
+              await deleteDoc(doc(db, "posts", item.id));
+              message("पोस्ट डिलीट हो गई।");
+              await loadPosts();
+            } catch (error) {
+              message(friendlyError(error), true);
+              del.disabled = false;
+            }
+          });
+          card.append(del);
+          list.append(card);
+        });
+      } catch (error) {
+        list.textContent = "";
+        message(friendlyError(error), true);
+      }
+    }
+
+    $("refreshBtn").addEventListener("click", loadPosts);
+  </script>
+</body>
+</html>
