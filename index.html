@@ -3,54 +3,56 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="IndiaVacancy - Latest Jobs, Offline Forms, Results, Admit Cards and Syllabus">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="IndiaVacancy - Latest Jobs, Results, Admit Cards and Syllabus">
 <title>IndiaVacancy - Latest Jobs & Forms</title>
 
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#202938}
 header{background:linear-gradient(120deg,#102e60,#1764b5);color:white;padding:22px 14px}
-.container{max-width:1100px;margin:auto;padding:0 14px}
+.container,main{max-width:1100px;margin:auto;padding:0 14px}
 .header-content{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
 header h1{font-size:35px;margin:0}
-header p{margin:5px 0}
+header p{margin:7px 0}
 a{text-decoration:none}
-.whatsapp{display:inline-block;background:#25d366;color:#063b20;padding:12px 17px;border-radius:8px;font-weight:bold}
-nav{background:#09264d;padding:12px;text-align:center}
-nav a{color:white;display:inline-block;padding:8px 10px}
-main{max-width:1100px;margin:22px auto;padding:0 14px}
+.whatsapp{display:inline-block;background:#25d366;color:#063b20;padding:12px 15px;border-radius:8px;font-weight:bold}
+nav{background:#09264d;padding:10px;text-align:center}
+nav a{color:white;display:inline-block;padding:8px}
+main{margin:22px auto}
 .hero,.job,.admin-box{background:white;border:1px solid #dce3ed;border-radius:10px;padding:18px;margin-bottom:16px}
-.hero h2{margin-top:0;color:#123d7a}
+.hero h2{color:#123d7a;margin-top:0}
 .search-row{display:flex;gap:8px;flex-wrap:wrap}
 input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:7px;font:inherit}
 .search-row input{flex:1;min-width:180px}
 button,.btn{border:0;border-radius:6px;padding:10px 14px;cursor:pointer;font-weight:bold;display:inline-block}
 .primary{background:#1764b5;color:white}
 .secondary{background:#e5ebf3;color:#203047}
+.danger{background:#fee2e2;color:#991b1b}
 .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:18px 0}
 .category{background:white;border:1px solid #dce3ed;padding:14px;text-align:center;border-radius:8px;color:#123d7a;font-weight:bold;cursor:pointer}
 .jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .job h3{color:#123d7a;margin-top:8px}
-.job p{overflow-wrap:anywhere}
+.job p{overflow-wrap:anywhere;white-space:pre-wrap}
 .tag{display:inline-block;background:#e8f1ff;color:#164c91;padding:4px 8px;border-radius:15px;font-size:12px}
 .job-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 .empty{padding:25px;text-align:center;background:white;border-radius:8px}
 footer{background:#09264d;color:white;text-align:center;padding:25px;margin-top:30px}
 footer a{color:#25d366}
 .admin-button{position:fixed;bottom:15px;right:15px;background:#172033;color:white;z-index:5;box-shadow:0 3px 12px #0003}
-.modal{display:none;position:fixed;inset:0;background:#0009;z-index:10;overflow:auto;padding:15px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:10;overflow:auto;padding:12px}
 .modal.open{display:block}
 .admin-box{max-width:850px;margin:20px auto;padding:20px}
-.admin-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field label{display:block;font-weight:bold;margin:8px 0 5px}
 .full{grid-column:1/-1}
 .admin-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #ddd}
-.admin-item small{display:block;color:#667085}
-.note{background:#fff5d6;padding:12px;border-radius:7px;font-size:13px;margin-top:15px}
+.admin-item small{display:block;color:#667085;margin-top:5px}
+.note{background:#fff5d6;padding:12px;border-radius:7px;font-size:13px;margin:12px 0}
+.status{padding:10px;border-radius:6px;background:#eef2ff;margin:10px 0;overflow-wrap:anywhere}
+.hidden{display:none!important}
 @media(max-width:600px){
- .header-content{align-items:flex-start}
  header h1{font-size:29px}
  .form-grid{grid-template-columns:1fr}
  .full{grid-column:auto}
@@ -58,7 +60,6 @@ footer a{color:#25d366}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -67,12 +68,7 @@ footer a{color:#25d366}
    <h1>IndiaVacancy</h1>
    <p>Latest Jobs | Offline Forms | Results | Admit Cards</p>
   </div>
-
-  <a class="whatsapp"
-     href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R"
-     target="_blank" rel="noopener noreferrer">
-     🟢 JOIN MY WHATSAPP CHANNEL
-  </a>
+  <a class="whatsapp" href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R" target="_blank" rel="noopener noreferrer">🟢 JOIN MY WHATSAPP CHANNEL</a>
  </div>
 </header>
 
@@ -88,23 +84,16 @@ footer a{color:#25d366}
 </nav>
 
 <main id="home">
-
  <section class="hero">
   <h2>Welcome to IndiaVacancy</h2>
   <p>सरकारी नौकरी, भर्ती फॉर्म, रिजल्ट और एडमिट कार्ड की जानकारी यहाँ देखें।</p>
-
   <div class="search-row">
    <input id="search" type="search" placeholder="नौकरी या विभाग खोजें...">
    <button class="primary" id="searchBtn">Search</button>
    <button class="secondary" id="resetBtn">Reset</button>
   </div>
-
-  <p style="margin-top:15px">
-   <a class="whatsapp"
-      href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R"
-      target="_blank" rel="noopener noreferrer">
-      JOIN MY WHATSAPP CHANNEL →
-   </a>
+  <p style="margin-top:18px">
+   <a class="whatsapp" href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R" target="_blank" rel="noopener noreferrer">JOIN MY WHATSAPP CHANNEL →</a>
   </p>
  </section>
 
@@ -115,21 +104,18 @@ footer a{color:#25d366}
   <button class="category" data-filter="Result">📊 Results</button>
   <button class="category" data-filter="Admit Card">🎫 Admit Card</button>
   <button class="category" data-filter="Syllabus">📚 Syllabus</button>
+  <button class="category" data-filter="Answer Key">🗝️ Answer Key</button>
  </div>
 
  <h2 id="listingTitle">Latest Updates</h2>
- <p id="jobCount"></p>
+ <p id="jobCount">लोड हो रहा है...</p>
  <section class="jobs" id="jobList"></section>
-
 </main>
 
 <footer>
  <h3>IndiaVacancy</h3>
  <p>Latest Recruitment & Government Job Updates</p>
- <a href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R"
-    target="_blank" rel="noopener noreferrer">
-    Join My WhatsApp Channel
- </a>
+ <a href="https://whatsapp.com/channel/0029VbDqyNyKLaHf1QNC4p1R" target="_blank" rel="noopener noreferrer">Join My WhatsApp Channel</a>
  <p>© <span id="year"></span> IndiaVacancy</p>
 </footer>
 
@@ -142,168 +128,178 @@ footer a{color:#25d366}
    <button class="secondary" id="closeAdmin">Close ✕</button>
   </div>
 
-  <p>यहाँ से नौकरी जोड़ें, Edit करें या Delete करें।</p>
-
-  <form id="jobForm">
-   <input type="hidden" id="editId">
-
-   <div class="form-grid">
+  <div id="loginSection">
+   <p>Admin account से Login करें।</p>
+   <form id="loginForm">
     <div class="field">
-     <label for="title">Job Title *</label>
-     <input id="title" required placeholder="जैसे Railway Recruitment 2026">
+     <label for="email">Admin Email</label>
+     <input id="email" type="email" autocomplete="username" required>
     </div>
-
     <div class="field">
-     <label for="category">Category *</label>
-     <select id="category" required>
-      <option value="Latest Job">Latest Job</option>
-      <option value="Offline Form">Offline Form</option>
-      <option value="Online Form">Online Form</option>
-      <option value="Result">Result</option>
-      <option value="Admit Card">Admit Card</option>
-      <option value="Syllabus">Syllabus</option>
-      <option value="Answer Key">Answer Key</option>
-     </select>
+     <label for="password">Password</label>
+     <input id="password" type="password" autocomplete="current-password" required>
     </div>
-
-    <div class="field">
-     <label for="department">Department</label>
-     <input id="department" placeholder="Department name">
-    </div>
-
-    <div class="field">
-     <label for="location">Location</label>
-     <input id="location" placeholder="All India / State">
-    </div>
-
-    <div class="field">
-     <label for="lastDate">Last Date</label>
-     <input id="lastDate" type="date">
-    </div>
-
-    <div class="field">
-     <label for="eligibility">Eligibility</label>
-     <input id="eligibility" placeholder="10th / 12th / Graduate">
-    </div>
-
-    <div class="field">
-     <label for="applyUrl">Details / Apply Link</label>
-     <input id="applyUrl" type="url" placeholder="https://...">
-    </div>
-
-    <div class="field">
-     <label for="pdfUrl">PDF / Notification Link</label>
-     <input id="pdfUrl" type="url" placeholder="https://...">
-    </div>
-
-    <div class="field full">
-     <label for="description">Description</label>
-     <textarea id="description" rows="4"
-       placeholder="भर्ती की पूरी जानकारी"></textarea>
-    </div>
-   </div>
-
-   <p>
-    <button type="submit" class="primary" id="saveBtn">Save Job</button>
-    <button type="button" class="secondary" id="clearBtn">Clear</button>
-   </p>
-  </form>
-
-  <div class="note">
-   <strong>महत्वपूर्ण:</strong> यह Admin Panel डेटा इसी ब्राउज़र में सेव करता है।
-   GitHub Pages पर दूसरे visitors को नए बदलाव दिखाने के लिए online database
-   और secure admin login की आवश्यकता होगी। PDF के लिए अभी PDF का URL डालें।
+    <p><button class="primary" type="submit">Login</button></p>
+   </form>
   </div>
 
-  <h3>Manage Jobs</h3>
-  <button class="secondary" id="exportBtn">Export JSON</button>
-  <label class="btn secondary" for="importFile">Import JSON</label>
-  <input id="importFile" type="file" accept=".json,application/json" hidden>
-  <div id="adminJobs"></div>
+  <div id="adminSection" class="hidden">
+   <div class="status" id="loginStatus">Logged in</div>
+   <button class="secondary" id="logoutBtn">Logout</button>
+
+   <h3>Add / Edit Vacancy</h3>
+   <form id="jobForm">
+    <input type="hidden" id="editId">
+    <div class="form-grid">
+     <div class="field">
+      <label for="title">Job Title *</label>
+      <input id="title" required placeholder="Railway Recruitment 2026">
+     </div>
+     <div class="field">
+      <label for="category">Category *</label>
+      <select id="category" required>
+       <option>Latest Job</option>
+       <option>Offline Form</option>
+       <option>Online Form</option>
+       <option>Result</option>
+       <option>Admit Card</option>
+       <option>Syllabus</option>
+       <option>Answer Key</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="department">Department</label>
+      <input id="department" placeholder="Department name">
+     </div>
+     <div class="field">
+      <label for="location">Location</label>
+      <input id="location" placeholder="All India / State">
+     </div>
+     <div class="field">
+      <label for="lastDate">Last Date</label>
+      <input id="lastDate" type="date">
+     </div>
+     <div class="field">
+      <label for="eligibility">Eligibility</label>
+      <input id="eligibility" placeholder="10th / 12th / Graduate">
+     </div>
+     <div class="field">
+      <label for="applyUrl">Details / Apply Link</label>
+      <input id="applyUrl" type="url" placeholder="https://...">
+     </div>
+     <div class="field">
+      <label for="pdfUrl">PDF / Notification Link</label>
+      <input id="pdfUrl" type="url" placeholder="https://...">
+     </div>
+     <div class="field">
+      <label for="status">Publication Status</label>
+      <select id="status">
+       <option value="published">Published (सभी को दिखे)</option>
+       <option value="draft">Draft (केवल Admin)</option>
+      </select>
+     </div>
+     <div class="field full">
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="भर्ती की पूरी जानकारी"></textarea>
+     </div>
+    </div>
+    <p>
+     <button type="submit" class="primary" id="saveBtn">Save Vacancy</button>
+     <button type="button" class="secondary" id="clearBtn">Clear</button>
+    </p>
+   </form>
+
+   <h3>Manage Vacancies</h3>
+   <p id="adminCount"></p>
+   <div id="adminJobs">लोड हो रहा है...</div>
+  </div>
+
+  <div id="message" class="status" role="status">Firebase से कनेक्ट हो रहा है...</div>
+  <div class="note">
+   PDF फाइल यहाँ सीधे अपलोड नहीं होती। PDF को किसी उपलब्ध hosting पर रखकर उसका HTTPS लिंक डालें।
+  </div>
  </div>
 </div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
-const KEY = "indiavacancy_jobs_v1";
+/* आपकी Firebase Web App Configuration */
+const firebaseConfig = {
+  apiKey: "AIzaSyA-zaFjIhbPmUL-jSMFhYsGkMhFSQ",
+  authDomain: "indiavacancy-fb647.firebaseapp.com",
+  projectId: "indiavacancy-fb647",
+  storageBucket: "indiavacancy-fb647.firebasestorage.app",
+  messagingSenderId: "109427134565",
+  appId: "1:109427134565:web:180068370a25e7f5ff768c",
+  measurementId: "G-ZSJMECLB5C"
+};
 
-const sampleJobs = [
- {
-  id:"sample1",
-  title:"अपनी पहली भर्ती यहाँ जोड़ें",
-  category:"Latest Job",
-  department:"Example Department",
-  location:"All India",
-  lastDate:"",
-  eligibility:"Official Notification देखें",
-  applyUrl:"",
-  pdfUrl:"",
-  description:"यह sample listing है। इसे Admin Panel से बदलें या Delete करें।"
- }
-];
+/*
+  यह UID Firestore Rules में Admin UID से बिल्कुल मेल खाना चाहिए।
+  इसे HTML में छिपा हुआ पासवर्ड न समझें। असली सुरक्षा Rules करते हैं।
+*/
+const ADMIN_UID = "SdiOEa34j6aEmcSaitGZ1F4dhXH3";
 
-function loadJobs(){
- try {
-  const saved = localStorage.getItem(KEY);
-  return saved ? JSON.parse(saved) : sampleJobs.slice();
- } catch(e) {
-  return sampleJobs.slice();
- }
-}
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const collection = db.collection("vacancies");
 
-let jobs = loadJobs();
+let jobs = [];
 let activeFilter = "All";
+let currentUser = null;
+let adminUnsubscribe = null;
+let publicUnsubscribe = null;
 
-function saveJobs(){
- localStorage.setItem(KEY, JSON.stringify(jobs));
+const $ = id => document.getElementById(id);
+
+function message(text){
+ $("message").textContent = text;
 }
 
 function escapeHTML(value){
- return String(value || "").replace(/[&<>"']/g, function(c){
-  return {
-   "&":"&amp;",
-   "<":"&lt;",
-   ">":"&gt;",
-   '"':"&quot;",
-   "'":"&#39;"
-  }[c];
- });
+ return String(value ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
 
 function safeURL(value){
- try {
-  const u = new URL(value);
-  return ["http:","https:"].includes(u.protocol) ? u.href : "";
- } catch(e) {
+ try{
+  const url = new URL(value);
+  return ["https:","http:"].includes(url.protocol) ? url.href : "";
+ }catch(e){
   return "";
  }
 }
 
+function formatDate(value){
+ if(!value) return "";
+ const parts = value.split("-");
+ return parts.length === 3 ? `${parts[2]}-${parts[1]}-${parts[0]}` : value;
+}
+
 function renderJobs(){
- const query = document.getElementById("search").value.toLowerCase().trim();
+ const query = $("search").value.toLowerCase().trim();
 
  const filtered = jobs.filter(job => {
-  const categoryMatch =
-   activeFilter === "All" || job.category === activeFilter;
-
+  const categoryMatch = activeFilter === "All" || job.category === activeFilter;
   const text = [
-   job.title, job.department, job.location,
-   job.category, job.eligibility, job.description
+   job.title,job.department,job.location,job.category,
+   job.eligibility,job.description
   ].join(" ").toLowerCase();
-
   return categoryMatch && text.includes(query);
  });
 
- document.getElementById("listingTitle").textContent =
-  activeFilter === "All" ? "Latest Updates" : activeFilter;
-
- document.getElementById("jobCount").textContent =
-  filtered.length + " update(s)";
-
- const root = document.getElementById("jobList");
+ $("listingTitle").textContent = activeFilter === "All" ? "Latest Updates" : activeFilter;
+ $("jobCount").textContent = `${filtered.length} update(s)`;
+ const root = $("jobList");
 
  if(!filtered.length){
   root.innerHTML = '<div class="empty">कोई अपडेट नहीं मिला।</div>';
-  renderAdmin();
   return;
  }
 
@@ -315,49 +311,26 @@ function renderJobs(){
    <article class="job">
     <span class="tag">${escapeHTML(job.category)}</span>
     <h3>${escapeHTML(job.title)}</h3>
-
     ${job.department ? `<p><b>Department:</b> ${escapeHTML(job.department)}</p>` : ""}
     ${job.location ? `<p><b>Location:</b> ${escapeHTML(job.location)}</p>` : ""}
-    ${job.lastDate ? `<p><b>Last Date:</b> ${escapeHTML(job.lastDate)}</p>` : ""}
+    ${job.lastDate ? `<p><b>Last Date:</b> ${escapeHTML(formatDate(job.lastDate))}</p>` : ""}
     ${job.eligibility ? `<p><b>Eligibility:</b> ${escapeHTML(job.eligibility)}</p>` : ""}
     ${job.description ? `<p>${escapeHTML(job.description)}</p>` : ""}
-
     <div class="job-actions">
      ${apply ? `<a class="btn primary" href="${escapeHTML(apply)}" target="_blank" rel="noopener noreferrer">Details / Apply</a>` : ""}
      ${pdf ? `<a class="btn secondary" href="${escapeHTML(pdf)}" target="_blank" rel="noopener noreferrer">PDF / Notification</a>` : ""}
-     ${!apply && !pdf ? "<span class='tag'>Links coming soon</span>" : ""}
+     ${!apply && !pdf ? '<span class="tag">Links coming soon</span>' : ""}
     </div>
    </article>`;
  }).join("");
-
- renderAdmin();
-}
-
-function clearForm(){
- document.getElementById("jobForm").reset();
- document.getElementById("editId").value = "";
- document.getElementById("saveBtn").textContent = "Save Job";
-}
-
-function editJob(id){
- const job = jobs.find(item => item.id === id);
- if(!job) return;
-
- ["title","category","department","location","lastDate",
-  "eligibility","applyUrl","pdfUrl","description"].forEach(key => {
-   document.getElementById(key).value = job[key] || "";
-  });
-
- document.getElementById("editId").value = id;
- document.getElementById("saveBtn").textContent = "Update Job";
- document.querySelector(".admin-box").scrollTo({top:0,behavior:"smooth"});
 }
 
 function renderAdmin(){
- const root = document.getElementById("adminJobs");
+ const root = $("adminJobs");
+ $("adminCount").textContent = `${jobs.length} vacancy/vacancies`;
 
  if(!jobs.length){
-  root.innerHTML = "<p>अभी कोई नौकरी नहीं जोड़ी गई है।</p>";
+  root.innerHTML = "<p>अभी कोई वैकेंसी नहीं है।</p>";
   return;
  }
 
@@ -365,128 +338,248 @@ function renderAdmin(){
   <div class="admin-item">
    <div>
     <strong>${escapeHTML(job.title)}</strong>
-    <small>${escapeHTML(job.category)} ${job.lastDate ? "• Last Date: "+escapeHTML(job.lastDate) : ""}</small>
+    <small>${escapeHTML(job.category)} · ${job.status === "published" ? "Published" : "Draft"}</small>
+    <small>${job.lastDate ? "Last Date: " + escapeHTML(formatDate(job.lastDate)) : ""}</small>
    </div>
    <div>
     <button class="secondary" data-edit="${escapeHTML(job.id)}">Edit</button>
-    <button class="secondary" data-delete="${escapeHTML(job.id)}">Delete</button>
+    <button class="danger" data-delete="${escapeHTML(job.id)}">Delete</button>
    </div>
   </div>
  `).join("");
 }
 
-document.getElementById("jobForm").addEventListener("submit", function(e){
- e.preventDefault();
+function clearForm(){
+ $("jobForm").reset();
+ $("editId").value = "";
+ $("saveBtn").textContent = "Save Vacancy";
+}
 
- const id = document.getElementById("editId").value;
- const item = {id: id || "job_" + Date.now()};
+function editJob(id){
+ const job = jobs.find(item => item.id === id);
+ if(!job) return;
 
  ["title","category","department","location","lastDate",
-  "eligibility","applyUrl","pdfUrl","description"].forEach(key => {
-   item[key] = document.getElementById(key).value.trim();
+  "eligibility","applyUrl","pdfUrl","description","status"].forEach(key => {
+  $(key).value = job[key] || (key === "status" ? "published" : "");
+ });
+
+ $("editId").value = id;
+ $("saveBtn").textContent = "Update Vacancy";
+ $("jobForm").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function startPublicListener(){
+ if(publicUnsubscribe) publicUnsubscribe();
+
+ publicUnsubscribe = collection
+  .where("status","==","published")
+  .onSnapshot(snapshot => {
+   jobs = snapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
+   jobs.sort((a,b) => {
+    const ad = a.createdAt?.toMillis?.() || 0;
+    const bd = b.createdAt?.toMillis?.() || 0;
+    return bd - ad;
+   });
+   renderJobs();
+  }, error => {
+   console.error(error);
+   $("jobList").innerHTML =
+    '<div class="empty">डेटा लोड नहीं हुआ। Firebase Firestore Rules और इंटरनेट कनेक्शन जाँचें।</div>';
+   $("jobCount").textContent = "लोड करने में समस्या";
   });
+}
 
- item.applyUrl = safeURL(item.applyUrl);
- item.pdfUrl = safeURL(item.pdfUrl);
+function startAdminListener(){
+ if(adminUnsubscribe) adminUnsubscribe();
 
- if(id){
-  jobs = jobs.map(job => job.id === id ? item : job);
- } else {
-  jobs.unshift(item);
+ adminUnsubscribe = collection.onSnapshot(snapshot => {
+  jobs = snapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
+  jobs.sort((a,b) => {
+   const ad = a.createdAt?.toMillis?.() || 0;
+   const bd = b.createdAt?.toMillis?.() || 0;
+   return bd - ad;
+  });
+  renderAdmin();
+  renderJobs();
+ }, error => {
+  console.error(error);
+  message("Admin डेटा नहीं पढ़ सका। Firestore Rules में Admin UID जाँचें।");
+ });
+}
+
+auth.onAuthStateChanged(user => {
+ currentUser = user;
+
+ if(user && user.uid === ADMIN_UID){
+  $("loginSection").classList.add("hidden");
+  $("adminSection").classList.remove("hidden");
+  $("loginStatus").textContent = "Logged in: " + user.email;
+  message("Admin Login सफल।");
+  startAdminListener();
+ }else{
+  $("loginSection").classList.remove("hidden");
+  $("adminSection").classList.add("hidden");
+
+  if(adminUnsubscribe){
+   adminUnsubscribe();
+   adminUnsubscribe = null;
+  }
+
+  if(user){
+   auth.signOut();
+   message("यह अकाउंट Admin UID से मेल नहीं खाता।");
+  }else{
+   message("Admin काम करने के लिए Login करें।");
+  }
+
+  clearForm();
+  startPublicListener();
  }
-
- saveJobs();
- clearForm();
- renderJobs();
- alert("Job इस ब्राउज़र में सेव हो गई।");
 });
 
-document.getElementById("adminJobs").addEventListener("click", function(e){
+$("loginForm").addEventListener("submit", async e => {
+ e.preventDefault();
+ message("Login हो रहा है...");
+
+ try{
+  await auth.signInWithEmailAndPassword(
+   $("email").value.trim(),
+   $("password").value
+  );
+  $("password").value = "";
+ }catch(error){
+  console.error(error);
+  message("Login असफल: " + error.message);
+ }
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+ try{
+  await auth.signOut();
+  clearForm();
+  message("Logout हो गया।");
+ }catch(error){
+  message("Logout नहीं हो पाया: " + error.message);
+ }
+});
+
+$("jobForm").addEventListener("submit", async e => {
+ e.preventDefault();
+
+ if(!currentUser || currentUser.uid !== ADMIN_UID){
+  message("पहले अधिकृत Admin Login करें।");
+  return;
+ }
+
+ const id = $("editId").value;
+ const item = {};
+
+ ["title","category","department","location","lastDate",
+  "eligibility","description","status"].forEach(key => {
+  item[key] = $(key).value.trim();
+ });
+
+ item.applyUrl = safeURL($("applyUrl").value.trim());
+ item.pdfUrl = safeURL($("pdfUrl").value.trim());
+
+ if(!item.title){
+  message("Job Title भरना आवश्यक है।");
+  return;
+ }
+
+ if(!["published","draft"].includes(item.status)){
+  message("Publication Status सही नहीं है।");
+  return;
+ }
+
+ $("saveBtn").disabled = true;
+ message("Firebase में सेव हो रहा है...");
+
+ try{
+  if(id){
+   await collection.doc(id).update({
+    ...item,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+   });
+   message("वैकेंसी अपडेट हो गई।");
+  }else{
+   await collection.add({
+    ...item,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+   });
+   message("नई वैकेंसी Firebase में सेव हो गई।");
+  }
+  clearForm();
+ }catch(error){
+  console.error(error);
+  message("Save असफल: " + error.message);
+ }finally{
+  $("saveBtn").disabled = false;
+ }
+});
+
+$("adminJobs").addEventListener("click", async e => {
  const edit = e.target.dataset.edit;
  const del = e.target.dataset.delete;
 
- if(edit) editJob(edit);
+ if(edit){
+  editJob(edit);
+  return;
+ }
 
- if(del && confirm("क्या आप इस नौकरी को Delete करना चाहते हैं?")){
-  jobs = jobs.filter(job => job.id !== del);
-  saveJobs();
-  renderJobs();
+ if(del && confirm("क्या इस वैकेंसी को Delete करना चाहते हैं?")){
+  if(!currentUser || currentUser.uid !== ADMIN_UID){
+   message("Admin Login आवश्यक है।");
+   return;
+  }
+
+  try{
+   await collection.doc(del).delete();
+   message("वैकेंसी Delete हो गई।");
+  }catch(error){
+   console.error(error);
+   message("Delete असफल: " + error.message);
+  }
  }
 });
 
-document.getElementById("clearBtn").addEventListener("click", clearForm);
+$("clearBtn").addEventListener("click", clearForm);
 
-document.getElementById("openAdmin").addEventListener("click", function(){
- document.getElementById("adminModal").classList.add("open");
+$("openAdmin").addEventListener("click", () => {
+ $("adminModal").classList.add("open");
 });
 
-document.getElementById("closeAdmin").addEventListener("click", function(){
- document.getElementById("adminModal").classList.remove("open");
+$("closeAdmin").addEventListener("click", () => {
+ $("adminModal").classList.remove("open");
 });
 
-document.getElementById("adminModal").addEventListener("click", function(e){
- if(e.target.id === "adminModal") this.classList.remove("open");
+$("adminModal").addEventListener("click", e => {
+ if(e.target.id === "adminModal"){
+  $("adminModal").classList.remove("open");
+ }
 });
 
-document.getElementById("search").addEventListener("input", renderJobs);
-document.getElementById("searchBtn").addEventListener("click", renderJobs);
+$("search").addEventListener("input", renderJobs);
+$("searchBtn").addEventListener("click", renderJobs);
 
-document.getElementById("resetBtn").addEventListener("click", function(){
- document.getElementById("search").value = "";
+$("resetBtn").addEventListener("click", () => {
+ $("search").value = "";
  activeFilter = "All";
  renderJobs();
 });
 
 document.querySelectorAll("[data-filter]").forEach(button => {
- button.addEventListener("click", function(){
-  activeFilter = this.dataset.filter;
+ button.addEventListener("click", () => {
+  activeFilter = button.dataset.filter;
   renderJobs();
  });
 });
 
-document.getElementById("exportBtn").addEventListener("click", function(){
- const blob = new Blob([JSON.stringify(jobs,null,2)], {
-  type:"application/json"
- });
+$("year").textContent = new Date().getFullYear();
 
- const url = URL.createObjectURL(blob);
- const a = document.createElement("a");
- a.href = url;
- a.download = "indiavacancy-jobs.json";
- a.click();
- URL.revokeObjectURL(url);
-});
-
-document.getElementById("importFile").addEventListener("change", async function(e){
- const file = e.target.files[0];
- if(!file) return;
-
- try {
-  const data = JSON.parse(await file.text());
-
-  if(!Array.isArray(data) ||
-     !data.every(job => job && job.title && job.category)){
-   throw new Error("Invalid JSON");
-  }
-
-  jobs = data.map((job,i) => ({
-   ...job,
-   id:String(job.id || "import_" + Date.now() + "_" + i)
-  }));
-
-  saveJobs();
-  renderJobs();
-  alert("Jobs import हो गईं।");
- } catch(error) {
-  alert("JSON फाइल सही नहीं है।");
- }
-
- e.target.value = "";
-});
-
-document.getElementById("year").textContent = new Date().getFullYear();
-renderJobs();
+startPublicListener();
 </script>
-
 </body>
 </html>
